@@ -44,7 +44,7 @@ private fun MyApp() {
 
     NavHost(navController = navHostController, startDestination = "ConsultaPersonas"){
 
-        composable(Routu){
+        //composable(Routu){
 
         }
     }
@@ -52,7 +52,7 @@ private fun MyApp() {
     //ConsultaPersona()
     //ConsultaOcupacion()
     //RegistroPersonas()
-}
+
 //Creacion Funciones
 @Composable
 fun ConsultaPersona(RegistroP : () -> Unit){
