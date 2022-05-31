@@ -22,6 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bonifaciotech.composebasic.ui.theme.ComposeBasicTheme
+import com.bonifaciotech.composebasic.util.Screen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,20 +43,28 @@ private fun MyApp() {
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = "ConsultaPersonas"){
+    NavHost(navController = navHostController, startDestination = Screen.ConsultaPersona.route){
 
-        //composable(Routu){
+        composable(route = Screen.ConsultaPersona.route){
+            ConsultaPersona(RegistroP = {navHostController.navigate(Screen.RegistroPersonas.route)}, Ocupaciones = {navHostController.navigate(Screen.ConsultaOcupacion.route)})
+        }
+        composable(route = Screen.RegistroPersonas.route){
+            RegistroPersonas (GoConsultaP = {navHostController.navigate(Screen.ConsultaPersona.route)})
+        }
 
+        composable(route = Screen.ConsultaOcupacion.route) {
+            ConsultaOcupacion(GoRegistroOcupac = {navHostController.navigate(Screen.RegistroOcupaciones.route)})
+        }
+        composable(route = Screen.RegistroOcupaciones.route){
+            RegistroOcupaciones (GoConsultaOcup = {navHostController.navigate(Screen.ConsultaOcupacion.route)} )
         }
     }
-    //Llamar las funciones
-    //ConsultaPersona()
-    //ConsultaOcupacion()
-    //RegistroPersonas()
+
+}
 
 //Creacion Funciones
 @Composable
-fun ConsultaPersona(RegistroP : () -> Unit){
+fun ConsultaPersona(RegistroP : () -> Unit, Ocupaciones: ()-> Unit){
 
      val scaffoldState = rememberScaffoldState()
 
@@ -77,13 +86,18 @@ fun ConsultaPersona(RegistroP : () -> Unit){
         
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
+            OutlinedButton(
+                onClick = {
+                    Ocupaciones()
+                }) {
+                Text(text = "Ocupaciones")
+            }
 
             val list = listOf("Gabriel","Enel","Maria")
 
             LazyColumn(modifier = Modifier.fillMaxWidth()){
                 items(list) {Nombres->
                     Text("El nombre es: $Nombres")
-                    //AuxPersona(Nombres)
                 }
             }
         }
@@ -93,11 +107,22 @@ fun ConsultaPersona(RegistroP : () -> Unit){
 }
 
 @Composable
-fun RegistroPersonas(){
+fun RegistroPersonas(GoConsultaP:()->Unit){
+    val scaffoldState = rememberScaffoldState()
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = "Registro de Personas")})
-        }
+        },
+       floatingActionButton = {
+           FloatingActionButton(
+               onClick = {
+                    GoConsultaP()
+               }) {
+               Icon(imageVector = Icons.Default.Person, contentDescription = null)
+
+           }
+       },
+        scaffoldState = scaffoldState
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
 
@@ -182,7 +207,6 @@ fun RegistroPersonas(){
     
 }
 
-
 @Composable
 fun RowOcup(ocup : String) {
     Row() {
@@ -191,71 +215,64 @@ fun RowOcup(ocup : String) {
 }
 
 @Composable
-fun ConsultaOcupacion(){
+fun ConsultaOcupacion(GoRegistroOcupac: ()-> Unit){
+    val scaffoldState = rememberScaffoldState()
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(text = "Consulta de Ocupaciones")})
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    GoRegistroOcupac()
+                }) {
+                Icon(imageVector = Icons.Default.Person, contentDescription =null )
 
-    Column(modifier = Modifier.padding(8.dp)) {
-
-        //val listOcupacioId = listOf("1","2","3")
-        val listDescripcion = listOf("Gerente","Supervisor","Contable")
-        //val listIngresos = listOf("80,000","72,000","55,000")
-
-        LazyColumn(modifier = Modifier.fillMaxWidth()){
-            items(listDescripcion){ocup->
-
-                RowOcup(ocup)
             }
+        },
+        scaffoldState = scaffoldState
+    ) {
+        Column(modifier = Modifier.padding(8.dp)) {
 
+
+            val listDescripcion = listOf("Gerente","Supervisor","Contable")
+
+            LazyColumn(modifier = Modifier.fillMaxWidth()){
+                items(listDescripcion){ocup->
+
+                    RowOcup(ocup)
+                }
+
+            }
         }
     }
+
+
 }
 
 @Composable
-fun ComponentePrueba() {
-    Column(modifier = Modifier.fillMaxWidth()) {
+fun RegistroOcupaciones(GoConsultaOcup: ()-> Unit){
+    val scaffoldState = rememberScaffoldState()
 
-        /*
-        Text(
-            text = stringResource("julio"),
-            style = MaterialTheme.typography.h3
-        )
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(text = "Registro de Ocupaciones")})
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    GoConsultaOcup()
+                }) {
+                Icon(imageVector = Icons.Default.Person, contentDescription = null)
 
-        OutlinedTextField(
-            label = {
-                Text("Ocupacion")
-            },
-        )
-
-         */
+            }
+        },
+        scaffoldState = scaffoldState
+    ) {
 
     }
 
-
-    OutlinedTextField(
-
-        value = "",
-        onValueChange = {}
-    )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //-------------------------------------------------------
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
