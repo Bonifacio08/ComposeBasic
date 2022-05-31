@@ -282,7 +282,7 @@ fun RegistroOcupaciones(GoConsultaOcup: ()-> Unit){
 
         OutlinedTextField(
             label = {
-                    Text(text = "Id:")
+                Text(text = "Id:")
             },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Person, contentDescription = null)
@@ -294,7 +294,7 @@ fun RegistroOcupaciones(GoConsultaOcup: ()-> Unit){
 
         OutlinedTextField(
             label = {
-                    Text(text = "Descripcion")
+                Text(text = "Descripcion")
             },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Person, contentDescription = null)
@@ -312,7 +312,6 @@ fun RegistroOcupaciones(GoConsultaOcup: ()-> Unit){
             leadingIcon = {
                 Icon(Icons.Default.Person, contentDescription = null)
             },
-
             value = "",
             onValueChange = {},
             modifier = Modifier.fillMaxWidth()
