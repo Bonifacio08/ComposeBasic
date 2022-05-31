@@ -40,7 +40,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MyApp() {
-
     val navHostController = rememberNavController()
 
     NavHost(navController = navHostController, startDestination = Screen.ConsultaPersona.route){
@@ -53,13 +52,13 @@ private fun MyApp() {
         }
 
         composable(route = Screen.ConsultaOcupacion.route) {
-            ConsultaOcupacion(GoRegistroOcupac = {navHostController.navigate(Screen.RegistroOcupaciones.route)})
+            ConsultaOcupacion(GoRegistroOcupac = {navHostController.navigate(Screen.RegistroOcupaciones.route)}, GoConsultaP = {navHostController.navigate(Screen.ConsultaPersona.route)})
         }
+
         composable(route = Screen.RegistroOcupaciones.route){
             RegistroOcupaciones (GoConsultaOcup = {navHostController.navigate(Screen.ConsultaOcupacion.route)} )
         }
     }
-
 }
 
 //Creacion Funciones
@@ -215,9 +214,9 @@ fun RowOcup(ocup : String) {
         Text("Ocupacion : $ocup ")
     }
 }
-
+//Hacer un boton para para consulta personas
 @Composable
-fun ConsultaOcupacion(GoRegistroOcupac: ()-> Unit){
+fun ConsultaOcupacion(GoRegistroOcupac: ()-> Unit, GoConsultaP: () -> Unit){
     val scaffoldState = rememberScaffoldState()
     Scaffold(
         topBar = {
@@ -236,6 +235,11 @@ fun ConsultaOcupacion(GoRegistroOcupac: ()-> Unit){
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
 
+            OutlinedButton(onClick = {
+                GoConsultaP()
+            }) {
+                Text(text = "Persona")
+            }
 
             val listDescripcion = listOf("Gerente","Supervisor","Contable")
 
