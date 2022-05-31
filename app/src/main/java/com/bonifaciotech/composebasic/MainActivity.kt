@@ -108,6 +108,7 @@ fun ConsultaPersona(RegistroP : () -> Unit, Ocupaciones: ()-> Unit){
 
 @Composable
 fun RegistroPersonas(GoConsultaP:()->Unit){
+    //Conexion inicio
     val scaffoldState = rememberScaffoldState()
     Scaffold(
         topBar = {
@@ -124,6 +125,7 @@ fun RegistroPersonas(GoConsultaP:()->Unit){
        },
         scaffoldState = scaffoldState
     ) {
+        //Fin conexion
         Column(modifier = Modifier.padding(8.dp)) {
 
             OutlinedTextField(
@@ -269,6 +271,48 @@ fun RegistroOcupaciones(GoConsultaOcup: ()-> Unit){
         },
         scaffoldState = scaffoldState
     ) {
+
+    }
+
+    Column(modifier = Modifier.padding(8.dp)) {
+
+        OutlinedTextField(
+            label = {
+                    Text(text = "Id:")
+            },
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Person, contentDescription = null)
+            },
+            value = "",
+            onValueChange = {},
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        OutlinedTextField(
+            label = {
+                    Text(text = "Descripcion")
+            },
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Person, contentDescription = null)
+            },
+            value = "",
+            onValueChange = {},
+            modifier = Modifier.fillMaxWidth()
+
+        )
+
+        OutlinedTextField(
+            label = {
+                Text(text = "Salario")
+            },
+            leadingIcon = {
+                Icon(Icons.Default.Person, contentDescription = null)
+            },
+
+            value = "",
+            onValueChange = {},
+            modifier = Modifier.fillMaxWidth()
+        )
 
     }
 
