@@ -116,7 +116,7 @@ fun RegistroPersonas(GoConsultaP:()->Unit){
        floatingActionButton = {
            FloatingActionButton(
                onClick = {
-                    GoConsultaP()
+                   GoConsultaP()
                }) {
                Icon(imageVector = Icons.Default.Person, contentDescription = null)
 
@@ -275,49 +275,49 @@ fun RegistroOcupaciones(GoConsultaOcup: ()-> Unit){
         },
         scaffoldState = scaffoldState
     ) {
+        Column(modifier = Modifier.padding(8.dp)) {
 
+            OutlinedTextField(
+                label = {
+                    Text(text = "Id:")
+                },
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Person, contentDescription = null)
+                },
+                value = "",
+                onValueChange = {},
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            OutlinedTextField(
+                label = {
+                    Text(text = "Descripcion")
+                },
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Person, contentDescription = null)
+                },
+                value = "",
+                onValueChange = {},
+                modifier = Modifier.fillMaxWidth()
+
+            )
+
+            OutlinedTextField(
+                label = {
+                    Text(text = "Salario")
+                },
+                leadingIcon = {
+                    Icon(Icons.Default.Person, contentDescription = null)
+                },
+                value = "",
+                onValueChange = {},
+                modifier = Modifier.fillMaxWidth()
+            )
+
+        }
     }
 
-    Column(modifier = Modifier.padding(8.dp)) {
 
-        OutlinedTextField(
-            label = {
-                Text(text = "Id:")
-            },
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Person, contentDescription = null)
-            },
-            value = "",
-            onValueChange = {},
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            label = {
-                Text(text = "Descripcion")
-            },
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Person, contentDescription = null)
-            },
-            value = "",
-            onValueChange = {},
-            modifier = Modifier.fillMaxWidth()
-
-        )
-
-        OutlinedTextField(
-            label = {
-                Text(text = "Salario")
-            },
-            leadingIcon = {
-                Icon(Icons.Default.Person, contentDescription = null)
-            },
-            value = "",
-            onValueChange = {},
-            modifier = Modifier.fillMaxWidth()
-        )
-
-    }
 
 }
 //-------------------------------------------------------
